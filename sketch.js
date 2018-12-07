@@ -29,10 +29,6 @@ function setup(){
     debug = createCheckbox();
 }
 
-function mouseClicked(){
-    food.push(createVector(mouseX, mouseY));
-}
-
 function draw(){
     if(vehicles.length == 0){
         showEndScreen();
@@ -54,6 +50,12 @@ function draw(){
         updateVehicles();
     }
 }
+
+function mouseClicked(){
+    food.push(createVector(mouseX, mouseY));
+}
+
+//-------------------------------------------------------------------------------
 
 function showEndScreen(){
     clear();

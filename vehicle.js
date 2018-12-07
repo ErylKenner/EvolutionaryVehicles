@@ -1,9 +1,3 @@
-/*global
-    p5, createCanvas, frameRate, width, height, createVector, translate, rotate, mouseX, mouseY, line, stroke, strokeWeight, noStroke, ellipse, background, fill,
-    text, rect, sq, dist,
-*/
-"use strict";
-// The "Vehicle" class
 function Vehicle(x,y, dna){
 	this.acceleration = createVector(0,0);
 	this.velocity = createVector(random(2, 3),random(-3, -2));
@@ -38,7 +32,7 @@ function Vehicle(x,y, dna){
         }
     }
 
-	this.update     = function(){
+	this.update = function(){
 		if(this.health > maxHealth){
 			maxHealth = this.health;
 			console.log("Health: " + maxHealth);
@@ -62,7 +56,7 @@ function Vehicle(x,y, dna){
 		this.acceleration.add(force);
 	};
 
-	this.display    = function(){
+	this.display = function(){
 		// Draw a triangle rotated in the direction of velocity
 		var theta = this.velocity.heading() + PI/2;
 		strokeWeight(3);
@@ -113,7 +107,7 @@ function Vehicle(x,y, dna){
 		pop();
 	};
 	
-	this.behaviors  = function(good, bad){
+	this.behaviors = function(good, bad){
 		var steerG = this.eat(good, 0.3, this.dna[2] * this.maxView);
 		var steerB = this.eat(bad, -0.9, this.dna[3] * this.maxView);
 		
@@ -124,7 +118,7 @@ function Vehicle(x,y, dna){
 		this.applyForce(steerB);
 	};
 	
-	this.eat        = function(list, nutrition, perception){
+	this.eat = function(list, nutrition, perception){
 		var record = Infinity,
 			closest = null;
 		for(var i = list.length - 1; i >= 0; i--){
@@ -145,7 +139,7 @@ function Vehicle(x,y, dna){
 		return createVector(0, 0);
 	};
 	
-	this.seek       = function(target){
+	this.seek = function(target){
 		var desired = p5.Vector.sub(target,this.position);
 		desired.setMag(this.maxvelocity);
 		var steer = p5.Vector.sub(desired,this.velocity);
@@ -154,7 +148,7 @@ function Vehicle(x,y, dna){
 		return steer;
 	};
 	
-	this.dead       = function(){
+	this.dead = function(){
 		return (this.health < 0);
 	};
 	
@@ -184,7 +178,7 @@ function Vehicle(x,y, dna){
 		}
   	};
     
-    this.clone      = function(){
+    this.clone = function(){
         this.lifetime = 0;
         this.children++;
         if(this.children > maxChildren){
@@ -194,3 +188,6 @@ function Vehicle(x,y, dna){
         return new Vehicle(this.position.x, this.position.y, this.dna);
     };
 }
+
+
+
